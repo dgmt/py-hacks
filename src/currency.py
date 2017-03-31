@@ -21,13 +21,13 @@ def main():
     }
     iid = coll.insert_one(today).inserted_id
 
-    din_pay = config.PAYCHECK * float(today["eur_mid"])
+    sallary = config.SALLARY * float(today["eur_mid"])
 
     tommorrow = datetime.date.today() + datetime.timedelta(days=1)
 
     if tommorrow.day == 1:
         msg_text = config.REPORT_MSG.replace(
-            '[[eur]]', today['eur_mid']).replace('[[paycheck]]', str(din_pay))
+            '[[eur]]', today['eur_mid']).replace('[[sallary]]', str(sallary))
         bot = telegram.Bot(token=config.TELEGRAM_TOKEN)
         # bot.getMe()
         chat_id = bot.getUpdates()[-1].message.chat_id
